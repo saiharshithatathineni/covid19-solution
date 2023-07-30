@@ -66,7 +66,6 @@ app.post("/districts/", async (request, response) => {
   const newDistrictDetails = dbResponse.lastID;
   response.send("District Successfully Added");
 });
-
 app.get("/districts/:districtId/", async (request, response) => {
   const { districtId } = request.params;
   const districtDetails = `SELECT * FROM district WHERE district_id=${districtId}`;
@@ -98,8 +97,8 @@ app.put("/districts/:districtId/", async (request, response) => {
         cases='${cases}',
         cured='${cured}',
         active='${active}',
-        deaths='${deaths}',
-        WHERE district_id=${districtId}`;
+        deaths='${deaths}'
+        WHERE district_id=${districtId}`; //updated sql query
   await db.run(updateDistrictDetails);
   response.send("District Details Updated");
 });
